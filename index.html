@@ -4,361 +4,251 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>СБП QR — Красивая страница для переводов по СБП</title>
-  <meta name="description" content="Создайте красивую страницу для переводов по СБП. QR-код + быстрые диплинки в банковские приложения. Бесплатно на GitHub Pages.">
+  <meta name="description" content="Создайте красивую премиальную страницу для переводов по СБП. С приоритетным банком и точными ссылками в приложения.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
     body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
     .title-font { font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif; font-weight: 600; }
-    .bank-btn { transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1); }
-    .bank-btn:active { transform: scale(0.965); }
-    .section-title { font-size: 0.8125rem; letter-spacing: -.02em; font-weight: 600; color: #374151; }
+    .premium-font { font-family: 'Playfair Display', Georgia, serif; }
+    .bank-btn { transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1); }
+    .bank-btn:active { transform: scale(0.97); }
+    .section-title { font-size: 0.75rem; letter-spacing: .05em; font-weight: 600; color: #52525b; text-transform: uppercase; }
     .toast { animation: toast-pop 0.2s ease forwards; }
     @keyframes toast-pop { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .phone-display { font-feature-settings: "tnum"; letter-spacing: -.5px; }
-    .qr-container canvas { border-radius: 14px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
-    .nice-shadow { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
-    .modal { animation: modal-pop 0.2s ease forwards; }
-    @keyframes modal-pop { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .phone-display { font-feature-settings: "tnum"; letter-spacing: -1px; }
+    .qr-container canvas { border-radius: 16px; }
+    .nice-shadow { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15), 0 10px 10px -6px rgb(0 0 0 / 0.1); }
+    .premium-card { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+    .priority-plaque { background: linear-gradient(135deg, #111827 0%, #1f2937 100%); color: white; }
+    .modal { animation: modal-pop 0.18s cubic-bezier(0.32, 0.72, 0, 1); }
+    @keyframes modal-pop { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-<body class="bg-zinc-50 min-h-screen text-zinc-900">
+<body class="bg-zinc-100 min-h-screen text-zinc-900">
   <!-- CREATOR VIEW -->
-  <div id="creator-view" class="max-w-md mx-auto">
-    <div class="px-5 pt-8 pb-3">
-      <div class="flex items-center gap-x-3">
-        <div class="w-11 h-11 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-inner flex-shrink-0">
-          <span class="text-white text-3xl font-bold tracking-[-1.5px]">S</span>
-        </div>
-        <div>
-          <div class="title-font text-3xl font-semibold tracking-tighter text-zinc-900">СБП QR</div>
-          <div class="text-emerald-600 text-sm font-medium -mt-0.5">переводы по номеру телефона</div>
-        </div>
-      </div>
-    </div>
-
+  <div id="creator-view" class="max-w-md mx-auto pt-6 pb-12">
     <div class="px-5">
-      <div class="mb-5">
-        <h1 class="text-[29px] leading-[1.05] font-semibold tracking-[-1.1px] text-zinc-900">Создайте красивую<br>страницу для СБП</h1>
-        <p class="mt-2.5 text-[15px] text-zinc-600">QR-код и диплинки в приложения банков.<br>Всё хранится в ссылке. Бесплатно.</p>
+      <div class="flex items-center gap-x-3 mb-6">
+        <div class="w-10 h-10 bg-zinc-900 rounded-2xl flex items-center justify-center">
+          <span class="text-white text-2xl font-bold">S</span>
+        </div>
+        <div class="title-font text-3xl font-semibold tracking-tighter">СБП QR</div>
       </div>
 
-      <!-- FORM CARD -->
-      <div class="bg-white rounded-3xl p-6 nice-shadow border border-zinc-100">
-        <div class="space-y-[17px]">
+      <div class="mb-6">
+        <h1 class="text-4xl font-semibold tracking-tighter">Создайте премиальную<br>страницу для переводов</h1>
+        <p class="mt-3 text-zinc-600">Красивый дизайн, приоритетный банк сверху, точные ссылки в приложения банков.</p>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 nice-shadow">
+        <div class="space-y-5">
           <div class="grid grid-cols-1 gap-4">
             <div>
               <label class="block text-sm font-semibold text-zinc-700 mb-1.5">Фамилия</label>
-              <input id="lastName" type="text" value="Иванов" class="w-full px-4 py-[13px] rounded-2xl border border-zinc-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-200 text-[17px] transition" placeholder="Иванов">
+              <input id="lastName" type="text" value="Иванов" class="w-full px-4 py-3.5 rounded-2xl border border-zinc-200 focus:border-zinc-900 focus:outline-none text-[17px] transition" placeholder="Иванов">
             </div>
             <div>
               <label class="block text-sm font-semibold text-zinc-700 mb-1.5">Имя</label>
-              <input id="firstName" type="text" value="Иван" class="w-full px-4 py-[13px] rounded-2xl border border-zinc-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-200 text-[17px] transition" placeholder="Иван">
+              <input id="firstName" type="text" value="Иван" class="w-full px-4 py-3.5 rounded-2xl border border-zinc-200 focus:border-zinc-900 focus:outline-none text-[17px] transition" placeholder="Иван">
             </div>
             <div>
-              <label class="block text-sm font-semibold text-zinc-700 mb-1.5">Отчество <span class="font-normal text-zinc-400">(опционально)</span></label>
-              <input id="patronymic" type="text" value="Иванович" class="w-full px-4 py-[13px] rounded-2xl border border-zinc-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-200 text-[17px] transition" placeholder="Иванович">
+              <label class="block text-sm font-semibold text-zinc-700 mb-1.5">Отчество</label>
+              <input id="patronymic" type="text" value="Иванович" class="w-full px-4 py-3.5 rounded-2xl border border-zinc-200 focus:border-zinc-900 focus:outline-none text-[17px] transition" placeholder="Иванович">
             </div>
           </div>
 
           <div>
             <label class="block text-sm font-semibold text-zinc-700 mb-1.5">Номер телефона</label>
-            <input id="phone" type="tel" value="+7 999 123-45-67" class="w-full px-4 py-[13px] rounded-2xl border border-zinc-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-200 text-[17px] font-medium transition" placeholder="+7 999 000 00 00">
-            <p class="mt-1.5 text-xs text-zinc-500 pl-1">Убедитесь, что номер подключён к СБП</p>
+            <input id="phone" type="tel" value="+7 999 123-45-67" class="w-full px-4 py-3.5 rounded-2xl border border-zinc-200 focus:border-zinc-900 focus:outline-none text-[17px] font-medium transition" placeholder="+7 999 000-00-00">
+          </div>
+
+          <!-- PRIORITY BANK -->
+          <div>
+            <label class="block text-sm font-semibold text-zinc-700 mb-1.5">Основной банк (приоритетный)</label>
+            <select id="priorityBank" class="w-full px-4 py-3.5 rounded-2xl border border-zinc-200 focus:border-zinc-900 focus:outline-none text-[15px] transition bg-white">
+              <option value="">— Не указывать —</option>
+              <option value="tbank">Т-Банк</option>
+              <option value="sber">СберБанк</option>
+              <option value="yandex">Яндекс Пэй</option>
+              <option value="alfa">Альфа-Банк</option>
+              <option value="vtb">ВТБ</option>
+              <option value="gazprom">Газпромбанк</option>
+              <option value="raif">Райффайзен</option>
+              <option value="ozon">Ozon Банк</option>
+            </select>
+            <p class="text-xs text-zinc-500 mt-1 pl-1">Будет красиво выделен сверху на странице</p>
           </div>
         </div>
 
-        <div class="mt-5 space-y-2.5">
-          <button onclick="createPage()" class="w-full bg-emerald-600 active:bg-emerald-700 text-white font-semibold py-4 rounded-2xl text-lg transition flex items-center justify-center gap-2 shadow">
-            Создать мою страницу
-          </button>
+        <button onclick="createPage()" class="mt-6 w-full bg-zinc-900 hover:bg-black active:bg-zinc-950 transition text-white font-semibold py-4 rounded-2xl text-lg">Создать премиальную страницу</button>
 
-          <div class="flex gap-2">
-            <button onclick="fillExample()" class="flex-1 py-3 text-sm font-medium bg-white border border-zinc-200 active:bg-zinc-50 hover:bg-zinc-50 rounded-2xl transition">Пример данных</button>
-            <button onclick="demoOpen()" class="flex-1 py-3 text-sm font-medium bg-emerald-50 active:bg-emerald-100 text-emerald-700 rounded-2xl transition">Посмотреть демо</button>
-          </div>
+        <div class="flex gap-2 mt-3">
+          <button onclick="fillExample()" class="flex-1 py-3 text-sm font-medium border border-zinc-200 rounded-2xl active:bg-zinc-50">Пример</button>
+          <button onclick="demoOpen()" class="flex-1 py-3 text-sm font-medium bg-emerald-100 text-emerald-800 rounded-2xl active:bg-emerald-200">Демо</button>
         </div>
       </div>
-
-      <div class="mt-5 text-center text-xs text-zinc-500">Никаких серверов. Ссылка содержит все данные.</div>
     </div>
-
-    <!-- RESULT PANEL -->
-    <div id="result-panel" class="hidden px-5 mt-7">
-      <div class="bg-white rounded-3xl p-6 nice-shadow border border-zinc-100">
-        <div class="font-semibold text-lg mb-4 flex items-center gap-2 text-emerald-700">
-          <span class="inline-block w-2 h-2 bg-emerald-600 rounded-full"></span>
-          Готово!
-        </div>
-
-        <div>
-          <div class="text-xs font-medium tracking-wider text-zinc-500 mb-1.5">ССЫЛКА</div>
-          <div class="flex">
-            <div onclick="copyShareLink()" id="share-link-text" class="font-mono text-[13px] flex-1 bg-zinc-100 active:bg-zinc-200 px-3.5 py-3 rounded-l-2xl cursor-pointer break-all leading-tight"></div>
-            <button onclick="copyShareLink()" class="px-4 bg-zinc-900 text-white text-sm font-semibold rounded-r-2xl active:bg-zinc-950">Копия</button>
-          </div>
-        </div>
-
-        <div class="mt-5">
-          <div class="text-xs font-medium tracking-wider text-zinc-500 mb-2">QR-КОД</div>
-          <div class="flex justify-center bg-zinc-100 rounded-3xl py-5">
-            <div id="qr-creator" class="qr-container"></div>
-          </div>
-          <div class="mt-3 grid grid-cols-2 gap-2">
-            <button onclick="downloadCreatorQR()" class="py-3 text-sm font-semibold bg-white border active:bg-zinc-50 border-zinc-200 rounded-2xl transition">Скачать PNG</button>
-            <button onclick="openPayPreview()" class="py-3 text-sm font-semibold bg-emerald-600 active:bg-emerald-700 text-white rounded-2xl transition">Открыть страницу</button>
-          </div>
-        </div>
-
-        <button onclick="resetCreator()" class="mt-3 w-full py-2 text-sm text-zinc-500 active:text-zinc-700">Редактировать данные</button>
-      </div>
-    </div>
-
-    <div class="h-10"></div>
   </div>
 
   <!-- PAY VIEW -->
   <div id="pay-view" class="hidden max-w-md mx-auto bg-white min-h-screen">
-    <div class="px-5 pt-7 pb-8">
-      <div class="flex justify-between items-center mb-6">
-        <div class="flex items-center gap-x-2.5">
-          <div class="w-8 h-8 rounded-xl bg-emerald-600 flex items-center justify-center"><span class="text-white font-bold text-xl tracking-[-1px]">S</span></div>
-          <span class="text-sm font-medium text-zinc-500">СБП QR</span>
+    <div class="px-5 pt-6 pb-10">
+      <!-- Priority Bank Plaque -->
+      <div id="priority-plaque" class="hidden mb-6"></div>
+
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-x-3">
+          <div class="w-8 h-8 bg-zinc-900 rounded-xl flex items-center justify-center"><span class="text-white text-xl font-bold">S</span></div>
+          <span class="font-semibold tracking-tight">СБП QR</span>
         </div>
-        <button onclick="goToCreator()" class="text-xs font-semibold px-4 h-8 bg-zinc-100 active:bg-zinc-200 rounded-2xl text-zinc-600 flex items-center">Создать свою</button>
+        <button onclick="goToCreator()" class="text-xs font-medium px-3.5 py-1.5 bg-zinc-100 rounded-2xl active:bg-zinc-200">Создать свою</button>
       </div>
 
-      <!-- Greeting + Name -->
-      <div class="text-center mb-7">
-        <div id="pay-avatar" class="mx-auto mb-4 w-20 h-20 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-full flex items-center justify-center text-white text-[29px] font-semibold shadow-inner ring-1 ring-inset ring-white/30"></div>
-        <div id="pay-name" class="text-3xl leading-none font-semibold tracking-[-1.5px] text-zinc-900"></div>
-        <div class="mt-1.5 text-emerald-600 text-sm font-medium">Готов получить перевод по СБП</div>
+      <!-- Name -->
+      <div class="text-center mb-6">
+        <div id="pay-avatar" class="mx-auto w-16 h-16 bg-gradient-to-br from-zinc-800 to-black rounded-2xl flex items-center justify-center text-white text-2xl font-semibold mb-3 ring-1 ring-offset-2 ring-zinc-200"></div>
+        <div id="pay-name" class="text-3xl font-semibold tracking-tighter"></div>
+        <div class="text-emerald-700 text-sm font-medium mt-0.5">Получить перевод по СБП</div>
       </div>
 
-      <!-- PRIMARY: copy number -->
-      <div class="mb-5">
-        <div class="section-title mb-2 px-0.5">Просто перевод по номеру</div>
-        <button onclick="copyPhoneFromPay()" class="w-full group bg-white border border-zinc-200 active:border-emerald-300 transition rounded-3xl px-5 py-4 text-left flex items-center justify-between">
+      <!-- Phone copy -->
+      <div class="mb-6">
+        <div class="section-title mb-2 px-1">Просто перевод по номеру</div>
+        <button onclick="copyPhoneFromPay()" class="w-full group bg-white border border-zinc-300 hover:border-zinc-400 active:border-emerald-500 transition rounded-3xl px-5 py-5 flex items-center justify-between text-left premium-card">
           <div>
-            <div class="text-xs text-zinc-500">Ваш номер телефона</div>
-            <div id="pay-phone" class="phone-display font-semibold text-4xl tracking-[-2px] text-zinc-950 mt-px group-active:text-emerald-700 transition-colors"></div>
+            <div class="text-xs text-zinc-500">Номер телефона</div>
+            <div id="pay-phone" class="phone-display font-semibold text-[32px] tracking-[-2.2px] text-zinc-950 mt-0.5"></div>
           </div>
-          <div class="ml-4 flex-shrink-0 w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2m0 0a2 2 0 01-2 2m2-2a2 2 0 012-2m-2 2v4" />
-            </svg>
+          <div class="w-12 h-12 rounded-2xl bg-zinc-100 flex items-center justify-center text-zinc-600 group-active:bg-emerald-100 group-active:text-emerald-700 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16v-4m4 4v4m4-8v8m4-4v-4m-16 8h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2" /></svg>
           </div>
         </button>
-        <div class="px-1 mt-3 text-sm leading-snug text-zinc-600">
-          Откройте приложение банка → <span class="font-semibold">Переводы по номеру телефона / СБП</span> → вставьте номер → переведите.
-        </div>
+        <div class="mt-2 px-1 text-sm text-zinc-600">Зайдите в приложение банка → Переводы по номеру телефона (СБП) → вставьте номер.</div>
       </div>
 
-      <!-- Banks section -->
-      <div>
-        <div class="section-title mb-2.5 px-0.5">Выберите банк для быстрого перехода</div>
-        <div class="mb-2 px-1 text-xs text-amber-600 bg-amber-50 rounded-2xl py-2 px-3">Диплинки помогают, но не всегда точны (особенно на iOS у Сбера). Номер всегда копируется автоматически. Следуйте подсказке под кнопкой банка.</div>
-        <div id="banks-grid" class="grid grid-cols-2 gap-2.5">
-          <!-- JS populated -->
-        </div>
+      <!-- Other banks -->
+      <div class="mb-2">
+        <div class="section-title mb-3 px-1">Или выберите банк</div>
+        <div id="banks-grid" class="grid grid-cols-2 gap-3"></div>
       </div>
 
-      <!-- Self QR -->
+      <!-- QR -->
       <div class="mt-8">
-        <div class="section-title mb-2 px-0.5">QR этой страницы</div>
-        <div class="bg-zinc-100 rounded-3xl p-5 flex justify-center">
+        <div class="section-title mb-2 px-1">QR-код страницы</div>
+        <div class="flex justify-center bg-zinc-100 rounded-3xl p-6">
           <div id="qr-pay" class="qr-container"></div>
         </div>
-        <p class="text-center text-xs text-zinc-500 mt-2">Можно отсканировать или отправить скрин</p>
       </div>
 
-      <div class="mt-8 text-center">
-        <a href="https://github.com/6w2xjystnb-bot/sbp-qr" target="_blank" class="text-xs text-zinc-400 hover:text-zinc-500 underline decoration-zinc-300">Исходный код на GitHub</a>
+      <div class="mt-8 text-center text-xs text-zinc-400">
+        <a href="https://github.com/6w2xjystnb-bot/sbp-qr" class="hover:text-zinc-500">GitHub</a>
       </div>
     </div>
   </div>
 
-  <!-- Bank Help Modal -->
-  <div id="bank-modal" onclick="closeBankModal()" class="hidden fixed inset-0 bg-black/60 z-[70] flex items-end md:items-center justify-center">
+  <!-- Modal -->
+  <div id="bank-modal" onclick="closeBankModal()" class="hidden fixed inset-0 bg-black/70 z-[80] flex items-end md:items-center justify-center">
     <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-md rounded-t-3xl md:rounded-3xl p-6 modal">
-      <div class="flex justify-between items-center mb-4">
+      <div class="flex justify-between mb-4">
         <div id="modal-bank-name" class="font-semibold text-xl"></div>
-        <button onclick="closeBankModal()" class="text-zinc-400 text-2xl leading-none">&times;</button>
+        <button onclick="closeBankModal()" class="text-3xl text-zinc-300">&times;</button>
       </div>
-      
-      <div id="modal-instruction" class="text-sm leading-relaxed bg-zinc-50 p-4 rounded-2xl text-zinc-700"></div>
-      
-      <div class="mt-4 flex gap-2">
-        <button id="modal-retry-btn" class="flex-1 py-3 bg-emerald-600 text-white font-semibold rounded-2xl active:bg-emerald-700">Повторить открытие приложения</button>
-        <button onclick="closeBankModal()" class="flex-1 py-3 bg-zinc-100 font-semibold rounded-2xl active:bg-zinc-200">Закрыть</button>
+      <div id="modal-instruction" class="text-sm bg-zinc-50 rounded-2xl p-4 mb-4 text-zinc-700"></div>
+      <div class="flex gap-3">
+        <button id="modal-retry" class="flex-1 py-3.5 bg-zinc-900 text-white font-semibold rounded-2xl">Открыть приложение</button>
+        <button onclick="closeBankModal()" class="flex-1 py-3.5 bg-zinc-100 font-semibold rounded-2xl">Закрыть</button>
       </div>
-      
-      <p class="text-[11px] text-center text-zinc-500 mt-3">Номер уже в буфере обмена. Если приложение открылось не на том экране — найдите раздел «Переводы по номеру» или «СБП».</p>
     </div>
   </div>
 
-  <div id="toast-container" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] flex flex-col items-center gap-y-1.5 pointer-events-none"></div>
+  <div id="toast-container" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[90]"></div>
 
   <script>
     const BANKS = [
-      { 
-        id: 'tbank', 
-        name: 'Т-Банк', 
-        abbr: 'Т', 
-        bg: '#FFDD2D', 
-        fg: '#111827', 
-        schemes: ['tinkoffbank://', 'tbank://bank/transfer'], 
-        instruction: 'Откройте «Платежи» → «Переводы по телефону». Вставьте номер из буфера.' 
-      },
-      { 
-        id: 'sber', 
-        name: 'СберБанк', 
-        abbr: 'С', 
-        bg: '#21A038', 
-        fg: '#fff', 
-        schemes: ['sberbankonline://', 'sberpay://', 'sbolpay://', 'onlineios-app://sbolpay/', 'startonline://sbolpay/'], 
-        instruction: 'В СберБанк Онлайн: Платежи → СБП (или «Переводы по номеру телефона»). Вставьте номер.' 
-      },
-      { 
-        id: 'alfa', 
-        name: 'Альфа-Банк', 
-        abbr: 'A', 
-        bg: '#EF3124', 
-        fg: '#fff', 
-        schemes: ['alfabank://', 'alfa://'], 
-        instruction: 'Перейдите в раздел переводов и выберите СБП / перевод по номеру телефона.' 
-      },
-      { 
-        id: 'vtb', 
-        name: 'ВТБ', 
-        abbr: 'ВТБ', 
-        bg: '#0033A0', 
-        fg: '#fff', 
-        schemes: ['vtb://', 'vtbonline://'], 
-        instruction: 'Платежи → «По номеру телефона или карты» → СБП.' 
-      },
-      { 
-        id: 'yandex', 
-        name: 'Яндекс Пэй', 
-        abbr: 'Я', 
-        bg: '#FF0000', 
-        fg: '#fff', 
-        schemes: ['yandexpay://', 'yandexpay://', 'yandex://pay'], 
-        instruction: 'В Яндекс Пэй: «Платежи» (внизу) → «Переводы по номеру телефона».' 
-      },
-      { 
-        id: 'gazprom', 
-        name: 'Газпромбанк', 
-        abbr: 'ГПБ', 
-        bg: '#1E3A5F', 
-        fg: '#fff', 
-        schemes: [], 
-        instruction: 'Переводы → «По номеру телефона» (СБП).' 
-      },
-      { 
-        id: 'raif', 
-        name: 'Райффайзен', 
-        abbr: 'Р', 
-        bg: '#EAB308', 
-        fg: '#111827', 
-        schemes: [], 
-        instruction: 'Раздел «Переводы» → СБП по номеру телефона.' 
-      },
-      { 
-        id: 'ozon', 
-        name: 'Ozon Банк', 
-        abbr: 'OZ', 
-        bg: '#0055FF', 
-        fg: '#fff', 
-        schemes: [], 
-        instruction: 'Переводы по СБП на номер телефона.' 
-      },
-      { 
-        id: 'other', 
-        name: 'Другой банк', 
-        abbr: '🏦', 
-        bg: '#475569', 
-        fg: '#fff', 
-        schemes: [], 
-        instruction: 'Зайдите в приложение и выберите перевод по номеру телефона через СБП.' 
-      }
+      { id: 'tbank', name: 'Т-Банк', abbr: 'Т', color: '#facc15', schemes: ['tinkoffbank://'], web: 'https://www.tbank.ru/transfer', instruction: 'Платежи → Переводы по телефону' },
+      { id: 'sber', name: 'СберБанк', abbr: 'С', color: '#16a34a', schemes: [], web: null, instruction: 'Платежи → Переводы по номеру телефона (СБП)' },
+      { id: 'yandex', name: 'Яндекс Пэй', abbr: 'Я', color: '#ef4444', schemes: [], web: null, instruction: 'Платежи → Переводы по номеру телефона' },
+      { id: 'alfa', name: 'Альфа-Банк', abbr: 'A', color: '#dc2626', schemes: ['alfabank://'], web: null, instruction: 'Переводы → СБП по номеру' },
+      { id: 'vtb', name: 'ВТБ', abbr: 'ВТБ', color: '#1e40af', schemes: ['vtb://'], web: null, instruction: 'Платежи → По номеру телефона' },
+      { id: 'gazprom', name: 'Газпромбанк', abbr: 'ГПБ', color: '#1e3a8a', schemes: [], web: null, instruction: 'Переводы по номеру (СБП)' },
+      { id: 'raif', name: 'Райффайзен', abbr: 'Р', color: '#ca8a04', schemes: [], web: null, instruction: 'Переводы → СБП' },
+      { id: 'ozon', name: 'Ozon Банк', abbr: 'OZ', color: '#2563eb', schemes: [], web: null, instruction: 'Переводы по СБП' },
+      { id: 'other', name: 'Другой банк', abbr: '🏦', color: '#3f3f46', schemes: [], web: null, instruction: 'Выберите перевод по номеру СБП' }
     ];
+
+    const BANK_SVGS = {
+      'tbank': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#facc15"/><path d="M10 10h16v4H14v4h10v4H14v8H10V10Z" fill="#111827"/></svg>`,
+      'sber': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#16a34a"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="system-ui">С</text></svg>`,
+      'yandex': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#ef4444"/><text x="18" y="26" text-anchor="middle" fill="white" font-size="18" font-weight="700">Я</text></svg>`,
+      'alfa': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#dc2626"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="20" font-weight="700">A</text></svg>`,
+      'vtb': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#1e40af"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="16" font-weight="700">ВТБ</text></svg>`,
+      'gazprom': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#1e3a8a"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="13" font-weight="700">ГПБ</text></svg>`,
+      'raif': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#ca8a04"/><text x="18" y="25" text-anchor="middle" fill="#111827" font-size="18" font-weight="700">Р</text></svg>`,
+      'ozon': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#2563eb"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="15" font-weight="700">OZ</text></svg>`,
+      'other': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#3f3f46"/><circle cx="18" cy="18" r="8" fill="white"/></svg>`
+    };
 
     let currentData = null;
     let shareUrl = '';
-    let lastBank = null;
 
     function normalizePhone(raw) {
-      let d = String(raw || '').replace(/\D/g, '');
-      if (!d) return '+79000000000';
-      if (d[0] === '8' && d.length === 11) d = '7' + d.slice(1);
+      let d = (raw || '').replace(/\D/g, '');
+      if (d.startsWith('8') && d.length === 11) d = '7' + d.slice(1);
       if (d.length === 10) d = '7' + d;
-      if (d.length === 11 && d[0] === '7') return '+' + d;
-      return '+7' + d.slice(-10);
+      return d.length >= 10 ? '+' + d.slice(-11) : '+7' + d;
     }
 
     function formatPhone(p) {
-      const digits = p.replace('+', '');
-      if (digits.length !== 11) return p;
-      return `+7 (${digits.slice(1,4)}) ${digits.slice(4,7)}-${digits.slice(7,9)}-${digits.slice(9)}`;
+      const d = p.replace('+', '');
+      if (d.length !== 11) return p;
+      return `+7 (${d.slice(1,4)}) ${d.slice(4,7)}-${d.slice(7,9)}-${d.slice(9)}`;
     }
+
+    function cleanPhone(p) { return p.replace('+', ''); }
 
     function encodeData(data) { return btoa(encodeURIComponent(JSON.stringify(data))); }
-    function decodeData(str) {
-      try { return JSON.parse(decodeURIComponent(escape(atob(str)))); } catch { return null; }
-    }
+    function decodeData(str) { try { return JSON.parse(decodeURIComponent(escape(atob(str)))); } catch { return null; } }
 
-    function generateShareUrl(data) {
-      return window.location.href.split('#')[0] + '#d=' + encodeData(data);
-    }
+    function generateShareUrl(data) { return location.href.split('#')[0] + '#d=' + encodeData(data); }
 
-    function showToast(msg, ms = 2600) {
+    function showToast(msg, ms=2600) {
       const c = document.getElementById('toast-container');
       const t = document.createElement('div');
-      t.className = 'toast max-w-xs bg-zinc-900 text-white px-5 py-3 text-sm rounded-3xl shadow-2xl pointer-events-auto';
+      t.className = 'max-w-[260px] bg-zinc-900 text-white text-sm px-4 py-2.5 rounded-2xl shadow-xl';
       t.textContent = msg;
       c.appendChild(t);
-      setTimeout(() => { t.style.transition = 'opacity .18s'; t.style.opacity = '0'; setTimeout(() => t.remove(), 120); }, ms);
+      setTimeout(() => { t.style.transition = 'all .2s'; t.style.opacity = '0'; setTimeout(()=>t.remove(),100); }, ms);
     }
 
-    async function copyToClipboard(text, okMsg = 'Скопировано') {
-      try {
-        await navigator.clipboard.writeText(text);
-        showToast(okMsg);
-      } catch {
-        const ta = document.createElement('textarea');
-        ta.value = text; document.body.appendChild(ta); ta.select();
-        document.execCommand('copy'); document.body.removeChild(ta);
-        showToast(okMsg);
-      }
+    async function copyToClipboard(text, msg = 'Скопировано') {
+      try { await navigator.clipboard.writeText(text); showToast(msg); } 
+      catch { const ta = document.createElement('textarea'); ta.value = text; document.body.append(ta); ta.select(); document.execCommand('copy'); ta.remove(); showToast(msg); }
     }
 
     function createPage() {
       const last = document.getElementById('lastName').value.trim();
       const first = document.getElementById('firstName').value.trim();
       const patr = document.getElementById('patronymic').value.trim();
-      const rawPhone = document.getElementById('phone').value.trim();
+      const phoneRaw = document.getElementById('phone').value.trim();
+      const priority = document.getElementById('priorityBank').value || null;
 
-      if (!last || !first) { showToast('Укажите фамилию и имя'); return; }
-      if (!rawPhone) { showToast('Укажите номер телефона'); return; }
+      if (!last || !first || !phoneRaw) { showToast('Заполните имя и номер'); return; }
 
       const fullName = [last, first, patr].filter(Boolean).join(' ');
-      const phone = normalizePhone(rawPhone);
+      const phone = normalizePhone(phoneRaw);
 
-      currentData = { name: fullName, phone };
+      currentData = { name: fullName, phone, priority };
       shareUrl = generateShareUrl(currentData);
 
-      const panel = document.getElementById('result-panel');
-      panel.classList.remove('hidden');
-
+      document.getElementById('result-panel').classList.remove('hidden');
       document.getElementById('share-link-text').textContent = shareUrl;
 
-      const qrBox = document.getElementById('qr-creator');
-      qrBox.innerHTML = '';
-      new QRCode(qrBox, { text: shareUrl, width: 196, height: 196, colorDark: '#18181b', colorLight: '#fff', correctLevel: QRCode.CorrectLevel.H });
-
-      showToast('Страница готова');
+      const qr = document.getElementById('qr-creator');
+      qr.innerHTML = '';
+      new QRCode(qr, { text: shareUrl, width: 190, height: 190, colorDark:'#111827', colorLight:'#fff', correctLevel: QRCode.CorrectLevel.H });
     }
 
     function fillExample() {
@@ -366,23 +256,20 @@
       document.getElementById('firstName').value = 'Иван';
       document.getElementById('patronymic').value = 'Иванович';
       document.getElementById('phone').value = '+7 999 123-45-67';
+      document.getElementById('priorityBank').value = 'tbank';
     }
 
     function demoOpen() {
-      const sample = { name: 'Иванов Иван Иванович', phone: '+79991234567' };
-      const url = generateShareUrl(sample);
-      history.pushState(null, '', url);
+      const sample = { name: 'Иванов Иван Иванович', phone: '+79991234567', priority: 'tbank' };
+      history.pushState(null, '', generateShareUrl(sample));
       renderPayPage(sample);
     }
 
-    function copyShareLink() {
-      if (shareUrl) copyToClipboard(shareUrl, 'Ссылка скопирована');
-    }
+    function copyShareLink() { if (shareUrl) copyToClipboard(shareUrl); }
 
     function downloadCreatorQR() {
-      const cont = document.getElementById('qr-creator');
-      const c = cont.querySelector('canvas');
-      if (!c) { showToast('QR ещё не готов'); return; }
+      const c = document.getElementById('qr-creator').querySelector('canvas');
+      if (!c) return;
       const a = document.createElement('a');
       a.download = 'sbp-qr.png';
       a.href = c.toDataURL('image/png');
@@ -390,28 +277,52 @@
     }
 
     function openPayPreview() {
-      if (!currentData || !shareUrl) return;
+      if (!currentData) return;
       history.pushState(null, '', shareUrl);
       renderPayPage(currentData);
     }
 
-    function resetCreator() {
-      document.getElementById('result-panel').classList.add('hidden');
+    function resetCreator() { document.getElementById('result-panel').classList.add('hidden'); }
+
+    function getBank(id) { return BANKS.find(b => b.id === id) || BANKS[BANKS.length-1]; }
+
+    function renderPriorityPlaque(bank, phone) {
+      const container = document.getElementById('priority-plaque');
+      const svg = BANK_SVGS[bank.id] || BANK_SVGS['other'];
+      container.innerHTML = `
+        <div class="priority-plaque rounded-3xl p-5 premium-card">
+          <div class="flex items-center gap-4">
+            <div class="flex-shrink-0">${svg}</div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs opacity-70 tracking-[1px] font-medium">ПРИОРИТЕТНЫЙ БАНК</div>
+              <div class="text-2xl font-semibold tracking-tighter">${bank.name}</div>
+            </div>
+            <button onclick="openPriorityBank('${bank.id}', '${phone}')" 
+              class="px-5 py-2.5 bg-white text-zinc-900 font-semibold rounded-2xl text-sm active:bg-zinc-100 whitespace-nowrap">Открыть</button>
+          </div>
+        </div>
+      `;
+      container.classList.remove('hidden');
+      container.classList.add('block');
+    }
+
+    function openPriorityBank(bankId, phone) {
+      const bank = getBank(bankId);
+      openBankApp(bank, phone, true);
     }
 
     function renderBanks(phone) {
       const grid = document.getElementById('banks-grid');
       grid.innerHTML = '';
-
       BANKS.forEach(b => {
+        const svg = BANK_SVGS[b.id] || BANK_SVGS['other'];
         const el = document.createElement('button');
-        el.className = 'bank-btn text-left flex gap-3 items-center w-full border border-zinc-200 px-3.5 py-3 bg-white rounded-2xl active:bg-zinc-50';
+        el.className = `bank-btn flex items-center gap-3 w-full text-left px-3 py-[13px] bg-white border border-zinc-200 rounded-2xl active:bg-zinc-50`;
         el.innerHTML = `
-          <div class="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-[13px] font-extrabold" style="background:${b.bg};color:${b.fg}">${b.abbr}</div>
-          <div class="flex-1 min-w-0">
-            <div class="font-semibold text-[15px] leading-none text-zinc-900">${b.name}</div>
-            <div class="text-[11px] text-emerald-600 font-medium mt-0.5">Открыть приложение</div>
-            <div class="text-[10px] text-zinc-500 mt-1 leading-tight">${b.instruction.split('.')[0]}.</div>
+          <div class="w-9 h-9 flex-shrink-0">${svg}</div>
+          <div class="min-w-0 flex-1">
+            <div class="font-semibold text-[15px]">${b.name}</div>
+            <div class="text-xs text-zinc-500">${b.instruction}</div>
           </div>
         `;
         el.onclick = () => openBankApp(b, phone);
@@ -419,47 +330,52 @@
       });
     }
 
-    function openBankApp(bank, phone) {
-      lastBank = bank;
-      copyToClipboard(phone, `Номер скопирован для ${bank.name}`);
+    function openBankApp(bank, phone, isPriority = false) {
+      copyToClipboard(phone, `Номер скопирован`);
 
-      // Try multiple schemes (important for Sber variants on iOS)
-      if (bank.schemes && bank.schemes.length > 0) {
-        bank.schemes.forEach((scheme, index) => {
-          setTimeout(() => {
-            try {
-              let url = scheme;
-              // try to append phone if the scheme looks like it can accept it
-              if (!scheme.includes('?') && !scheme.endsWith('/')) {
-                url = scheme;
-              }
-              window.location.href = url;
-            } catch (e) {}
-          }, index * 280);
-        });
+      let opened = false;
+      const clean = cleanPhone(phone);
+
+      // Special high-quality links
+      if (bank.id === 'sber') {
+        window.location.href = `https://www.sberbank.com/sms/pbpn?requisiteNumber=${clean}`;
+        opened = true;
+      } else if (bank.id === 'yandex') {
+        window.location.href = `ybapp://screen.open/transfer?scenario=phone&target_phone=${clean}`;
+        opened = true;
+      } else if (bank.schemes && bank.schemes.length) {
+        bank.schemes.forEach((s, i) => setTimeout(() => { window.location.href = s; }, i * 220));
+        opened = true;
       }
 
-      // Show helpful modal with exact instructions
-      setTimeout(() => {
-        showBankModal(bank);
-      }, 650);
+      // Web fallback
+      if (bank.web) {
+        setTimeout(() => {
+          if (!opened) {
+            // offer in modal
+          }
+        }, 800);
+      }
+
+      showBankModal(bank, phone);
     }
 
-    function showBankModal(bank) {
+    function showBankModal(bank, phone) {
       const modal = document.getElementById('bank-modal');
-      document.getElementById('modal-bank-name').innerHTML = `<span style="color:${bank.bg}">●</span> ${bank.name}`;
-      document.getElementById('modal-instruction').innerHTML = bank.instruction.replace(/\n/g, '<br>');
-      
-      const retryBtn = document.getElementById('modal-retry-btn');
-      retryBtn.onclick = () => {
-        if (lastBank && currentData) {
-          // re-attempt all schemes
-          if (lastBank.schemes && lastBank.schemes.length) {
-            lastBank.schemes.forEach((s, i) => {
-              setTimeout(() => { try { window.location.href = s; } catch(e){} }, i*200);
-            });
-          }
-        }
+      document.getElementById('modal-bank-name').textContent = bank.name;
+      document.getElementById('modal-instruction').innerHTML = `
+        <strong>Рекомендуемый путь:</strong><br>${bank.instruction}<br><br>
+        Номер <span class="font-mono">${phone}</span> уже скопирован.
+        ${bank.web ? `<br><span class="text-emerald-600">Можно открыть веб-версию банка.</span>` : ''}
+      `;
+
+      const retry = document.getElementById('modal-retry');
+      retry.onclick = () => {
+        const clean = cleanPhone(phone);
+        if (bank.id === 'sber') window.location = `https://www.sberbank.com/sms/pbpn?requisiteNumber=${clean}`;
+        else if (bank.id === 'yandex') window.location = `ybapp://screen.open/transfer?scenario=phone&target_phone=${clean}`;
+        else if (bank.schemes?.length) window.location.href = bank.schemes[0];
+        else if (bank.web) window.location.href = bank.web;
         closeBankModal();
       };
 
@@ -468,75 +384,67 @@
     }
 
     function closeBankModal() {
-      const modal = document.getElementById('bank-modal');
-      modal.classList.remove('flex');
-      modal.classList.add('hidden');
+      const m = document.getElementById('bank-modal');
+      m.classList.remove('flex');
+      m.classList.add('hidden');
     }
 
-    function copyPhoneFromPay() {
-      if (currentData) copyToClipboard(currentData.phone, 'Номер телефона скопирован');
-    }
+    function copyPhoneFromPay() { if (currentData) copyToClipboard(currentData.phone); }
 
     function renderPayPage(data) {
       document.getElementById('creator-view').classList.add('hidden');
-      const pay = document.getElementById('pay-view');
-      pay.classList.remove('hidden');
+      const payView = document.getElementById('pay-view');
+      payView.classList.remove('hidden');
 
       currentData = data;
 
-      document.getElementById('pay-name').textContent = data.name || 'Получатель';
-
+      document.getElementById('pay-name').textContent = data.name;
       const av = document.getElementById('pay-avatar');
-      const parts = (data.name || 'S B').split(' ');
-      av.textContent = ((parts[0]||'S')[0] + (parts[1]||'')[0]).toUpperCase();
+      const parts = data.name.split(' ');
+      av.textContent = (parts[0]?.[0] || 'S') + (parts[1]?.[0] || '');
 
       document.getElementById('pay-phone').textContent = formatPhone(data.phone);
 
+      // Priority plaque
+      const plaque = document.getElementById('priority-plaque');
+      plaque.classList.add('hidden');
+      if (data.priority) {
+        const prio = getBank(data.priority);
+        renderPriorityPlaque(prio, data.phone);
+      }
+
       renderBanks(data.phone);
 
-      // Self QR
-      const qrEl = document.getElementById('qr-pay');
-      qrEl.innerHTML = '';
-      const selfUrl = generateShareUrl(data);
-      new QRCode(qrEl, { text: selfUrl, width: 148, height: 148, colorDark: '#18181b', colorLight: '#f4f4f5', correctLevel: QRCode.CorrectLevel.M });
+      const qr = document.getElementById('qr-pay');
+      qr.innerHTML = '';
+      new QRCode(qr, { text: generateShareUrl(data), width: 150, height: 150, colorDark: '#111827', colorLight: '#f4f4f5' });
     }
 
     function goToCreator() {
-      history.pushState(null, '', window.location.pathname);
+      history.pushState(null, '', location.pathname);
       document.getElementById('pay-view').classList.add('hidden');
       document.getElementById('creator-view').classList.remove('hidden');
       document.getElementById('result-panel').classList.add('hidden');
     }
 
     function initFromHash() {
-      if (!location.hash || location.hash.length < 4) return false;
+      if (!location.hash) return false;
       const payload = location.hash.startsWith('#d=') ? location.hash.slice(3) : location.hash.slice(1);
-      const data = decodeData(payload);
-      if (data && data.phone) {
-        renderPayPage(data);
-        return true;
-      }
+      const d = decodeData(payload);
+      if (d && d.phone) { renderPayPage(d); return true; }
       return false;
     }
 
-    function setupPhoneInput() {
-      const inp = document.getElementById('phone');
-      inp.addEventListener('blur', () => {
-        if (inp.value.trim()) inp.value = formatPhone(normalizePhone(inp.value));
-      });
-    }
-
     function init() {
-      setupPhoneInput();
+      // phone formatting
+      const phoneIn = document.getElementById('phone');
+      phoneIn.addEventListener('blur', () => { if (phoneIn.value) phoneIn.value = formatPhone(normalizePhone(phoneIn.value)); });
 
-      if (!initFromHash()) {
-        // ready for input
-      }
+      if (!initFromHash()) {}
 
+      // keyboard
       document.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && document.getElementById('result-panel').classList.contains('hidden') && !document.getElementById('creator-view').classList.contains('hidden')) {
-          createPage();
-        }
+        if (e.key === 'Enter' && !document.getElementById('creator-view').classList.contains('hidden')) createPage();
       });
     }
 
