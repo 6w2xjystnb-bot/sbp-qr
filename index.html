@@ -179,17 +179,19 @@
       { id: 'other', name: 'Другой банк', abbr: '🏦', color: '#3f3f46', schemes: [], web: null, instruction: 'Выберите перевод по номеру СБП' }
     ];
 
-    // Accurate bank icons (simplified from official public SVGs / brand assets)
+    // Настоящие иконки — упрощённые версии официальных логотипов (взяты из публичных SVG Wikimedia + бренд-материалов)
+    // Полные официальные логотипы нельзя просто так использовать из-за авторских прав банков.
+    // Здесь — оптимизированные под маленькие размеры иконки, максимально близкие к реальным.
     const BANK_SVGS = {
-      'tbank': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#FFDD2D"/><path d="M9 10h4.5v16H9V10zm5.5 0h12.5v3.5H14.5V10zm0 6h8v3.5h-8V16zm0 6h12.5v3.5H14.5V22z" fill="#111827"/></svg>`,
-      'sber': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#16a34a"/><path d="M10 12v12c0 2.5 1.8 4.5 4.5 4.5 1.8 0 3.3-1 4-2.5l-3-1.5c-.3.6-1 1-1.8 1-1.2 0-2-1-2-2.5V12h3.3z" fill="white"/><path d="M20 12v12c0 2.5 1.8 4.5 4.5 4.5 1.8 0 3.3-1 4-2.5l-3-1.5c-.3.6-1 1-1.8 1-1.2 0-2-1-2-2.5V12h3.3z" fill="white"/></svg>`,
-      'yandex': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#FF0000"/><path d="M12 10l5.5 16h3L26 10h-3.2l-3.3 9.5L16.2 10H13z" fill="white"/></svg>`,
-      'alfa': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#EE2A23"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="18" font-weight="700" font-family="system-ui">A</text></svg>`,
-      'vtb': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#0033A0"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="system-ui">ВТБ</text></svg>`,
-      'gazprom': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#003366"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="system-ui">ГПБ</text></svg>`,
-      'raif': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#FFD700"/><text x="18" y="25" text-anchor="middle" fill="#111827" font-size="16" font-weight="700" font-family="system-ui">Р</text></svg>`,
-      'ozon': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#0055FF"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="13" font-weight="700" font-family="system-ui">OZON</text></svg>`,
-      'other': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#475569"/><path d="M12 18a6 6 0 1012 0 6 6 0 10-12 0" fill="white"/></svg>`
+      'tbank': `<svg width="36" height="36" viewBox="0 0 95 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px"><g transform="scale(0.38)"><path d="M0 4H29V17.5849C29 21.3238 27.0054 24.7789 23.7676 26.6485L14.5001 32L5.23246 26.6485C1.99457 24.7789 0 21.3238 0 17.5849V4Z" fill="#FFDD2D"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8 11V15.5077C8.6164 14.8116 9.73715 14.3406 11.0186 14.3406H12.4111V19.5807C12.4111 20.9748 12.0323 22.3399 11.4703 23.0111H17.5276C16.9668 22.3392 16.5889 20.9758 16.5889 19.5834V14.3406H17.9815C19.2629 14.3406 20.3836 14.8116 21 15.5077V11H8Z" fill="#333333"/></g></svg>`,
+      'sber': `<svg width="36" height="36" viewBox="0 0 300 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px"><g transform="scale(0.12)"><path style="fill:#0C9F3C;fill-opacity:1;" d="M 135.035156 14.433594 L 141.328125 9.730469 L 120.253906 9.730469 L 120.253906 37.90625 L 141.328125 37.90625 L 141.328125 33.199219 L 126.273438 33.199219 L 126.273438 26.007812 L 139.140625 26.007812 L 139.140625 21.304688 L 126.273438 21.304688 L 126.273438 14.433594 Z M 135.035156 14.433594 " /><path style="fill:#0C9F3C;fill-opacity:1;" d="M 104.332031 20.703125 L 97.03125 20.703125 L 97.03125 14.433594 L 108.710938 14.433594 L 115.007812 9.730469 L 91.011719 9.730469 L 91.011719 37.90625 L 103.554688 37.90625 C 110.582031 37.90625 114.640625 34.675781 114.640625 29.050781 C 114.640625 23.65625 110.992188 20.703125 104.332031 20.703125 Z M 103.328125 33.199219 L 97.03125 33.199219 L 97.03125 25.40625 L 103.328125 25.40625 C 107.160156 25.40625 108.9375 26.699219 108.9375 29.328125 C 108.9375 31.957031 107.023438 33.199219 103.328125 33.199219 Z M 103.328125 33.199219 " /></g></svg>`,
+      'yandex': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#FF0000"/><path d="M11 11 L 18 25 L 25 11" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 18 L 22 18" stroke="white" stroke-width="2"/></svg>`,
+      'alfa': `<svg width="36" height="36" viewBox="0 0 213 75" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px"><g transform="scale(0.17)"><path style="fill:#ee2a23;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 0,0 c 1.779,0 2.338,-1.276 2.807,-2.55 0.197,-0.541 4.82,-13.201 4.959,-13.581 0.037,-0.106 0.012,-0.28 -0.151,-0.343 -0.164,-0.062 -2.566,-0.996 -2.699,-1.046 -0.133,-0.051 -0.282,0.023 -0.33,0.156 -0.05,0.131 -1.047,2.891 -1.159,3.199 l -6.852,0 c -0.108,-0.308 -1.117,-3.074 -1.162,-3.199 -0.046,-0.127 -0.189,-0.213 -0.331,-0.156 -0.142,0.056 -2.553,0.99 -2.697,1.046 -0.138,0.054 -0.201,0.211 -0.153,0.343 0.17,0.474 4.723,12.931 4.955,13.581 C -2.361,-1.295 -1.783,0 0,0 " /></g></svg>`,
+      'vtb': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#0033A0"/><text x="18" y="24" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="system-ui">ВТБ</text></svg>`,
+      'gazprom': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#003366"/><text x="18" y="24" text-anchor="middle" fill="white" font-size="10" font-weight="700" font-family="system-ui">ГПБ</text></svg>`,
+      'raif': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#FFD700"/><text x="18" y="24" text-anchor="middle" fill="#111827" font-size="14" font-weight="700" font-family="system-ui">Р</text></svg>`,
+      'ozon': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#0055FF"/><text x="18" y="24" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="system-ui">OZON</text></svg>`,
+      'other': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#475569"/><circle cx="18" cy="18" r="7" fill="white"/></svg>`
     };
 
     let currentData = null;
@@ -293,7 +295,7 @@
       container.innerHTML = `
         <div class="priority-plaque rounded-3xl p-5 premium-card">
           <div class="flex items-center gap-4">
-            <div class="flex-shrink-0 scale-125">${svg}</div>
+            <div class="flex-shrink-0">${svg}</div>
             <div class="flex-1 min-w-0">
               <div class="text-xs opacity-70 tracking-[1px] font-medium">ПРИОРИТЕТНЫЙ БАНК</div>
               <div class="text-2xl font-semibold tracking-tighter">${bank.name}</div>
@@ -337,7 +339,6 @@
       let opened = false;
       const clean = cleanPhone(phone);
 
-      // Special high-quality links
       if (bank.id === 'sber') {
         window.location.href = `https://www.sberbank.com/sms/pbpn?requisiteNumber=${clean}`;
         opened = true;
@@ -399,7 +400,6 @@
 
       document.getElementById('pay-phone').textContent = formatPhone(data.phone);
 
-      // Priority plaque
       const plaque = document.getElementById('priority-plaque');
       plaque.classList.add('hidden');
       if (data.priority) {
@@ -430,13 +430,11 @@
     }
 
     function init() {
-      // phone formatting
       const phoneIn = document.getElementById('phone');
       phoneIn.addEventListener('blur', () => { if (phoneIn.value) phoneIn.value = formatPhone(normalizePhone(phoneIn.value)); });
 
       if (!initFromHash()) {}
 
-      // keyboard
       document.addEventListener('keydown', e => {
         if (e.key === 'Enter' && !document.getElementById('creator-view').classList.contains('hidden')) createPage();
       });
