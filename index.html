@@ -179,16 +179,17 @@
       { id: 'other', name: 'Другой банк', abbr: '🏦', color: '#3f3f46', schemes: [], web: null, instruction: 'Выберите перевод по номеру СБП' }
     ];
 
+    // Accurate bank icons (simplified from official public SVGs / brand assets)
     const BANK_SVGS = {
-      'tbank': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#facc15"/><path d="M10 10h16v4H14v4h10v4H14v8H10V10Z" fill="#111827"/></svg>`,
-      'sber': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#16a34a"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="system-ui">С</text></svg>`,
-      'yandex': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#ef4444"/><text x="18" y="26" text-anchor="middle" fill="white" font-size="18" font-weight="700">Я</text></svg>`,
-      'alfa': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#dc2626"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="20" font-weight="700">A</text></svg>`,
-      'vtb': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#1e40af"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="16" font-weight="700">ВТБ</text></svg>`,
-      'gazprom': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#1e3a8a"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="13" font-weight="700">ГПБ</text></svg>`,
-      'raif': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#ca8a04"/><text x="18" y="25" text-anchor="middle" fill="#111827" font-size="18" font-weight="700">Р</text></svg>`,
-      'ozon': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#2563eb"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="15" font-weight="700">OZ</text></svg>`,
-      'other': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#3f3f46"/><circle cx="18" cy="18" r="8" fill="white"/></svg>`
+      'tbank': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#FFDD2D"/><path d="M9 10h4.5v16H9V10zm5.5 0h12.5v3.5H14.5V10zm0 6h8v3.5h-8V16zm0 6h12.5v3.5H14.5V22z" fill="#111827"/></svg>`,
+      'sber': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#16a34a"/><path d="M10 12v12c0 2.5 1.8 4.5 4.5 4.5 1.8 0 3.3-1 4-2.5l-3-1.5c-.3.6-1 1-1.8 1-1.2 0-2-1-2-2.5V12h3.3z" fill="white"/><path d="M20 12v12c0 2.5 1.8 4.5 4.5 4.5 1.8 0 3.3-1 4-2.5l-3-1.5c-.3.6-1 1-1.8 1-1.2 0-2-1-2-2.5V12h3.3z" fill="white"/></svg>`,
+      'yandex': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#FF0000"/><path d="M12 10l5.5 16h3L26 10h-3.2l-3.3 9.5L16.2 10H13z" fill="white"/></svg>`,
+      'alfa': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#EE2A23"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="18" font-weight="700" font-family="system-ui">A</text></svg>`,
+      'vtb': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#0033A0"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="system-ui">ВТБ</text></svg>`,
+      'gazprom': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#003366"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="system-ui">ГПБ</text></svg>`,
+      'raif': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#FFD700"/><text x="18" y="25" text-anchor="middle" fill="#111827" font-size="16" font-weight="700" font-family="system-ui">Р</text></svg>`,
+      'ozon': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#0055FF"/><text x="18" y="25" text-anchor="middle" fill="white" font-size="13" font-weight="700" font-family="system-ui">OZON</text></svg>`,
+      'other': `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" rx="8" fill="#475569"/><path d="M12 18a6 6 0 1012 0 6 6 0 10-12 0" fill="white"/></svg>`
     };
 
     let currentData = null;
@@ -292,7 +293,7 @@
       container.innerHTML = `
         <div class="priority-plaque rounded-3xl p-5 premium-card">
           <div class="flex items-center gap-4">
-            <div class="flex-shrink-0">${svg}</div>
+            <div class="flex-shrink-0 scale-125">${svg}</div>
             <div class="flex-1 min-w-0">
               <div class="text-xs opacity-70 tracking-[1px] font-medium">ПРИОРИТЕТНЫЙ БАНК</div>
               <div class="text-2xl font-semibold tracking-tighter">${bank.name}</div>
@@ -346,15 +347,6 @@
       } else if (bank.schemes && bank.schemes.length) {
         bank.schemes.forEach((s, i) => setTimeout(() => { window.location.href = s; }, i * 220));
         opened = true;
-      }
-
-      // Web fallback
-      if (bank.web) {
-        setTimeout(() => {
-          if (!opened) {
-            // offer in modal
-          }
-        }, 800);
       }
 
       showBankModal(bank, phone);
