@@ -23,6 +23,10 @@
 
 Есть кнопка **«Посмотреть демо»** — сразу покажет, как выглядит готовая страница.
 
+### Пример готовой страницы
+
+https://6w2xjystnb-bot.github.io/sbp-qr/#d=JTdCJTIybmFtZSUyMiUzQSUyMCUyMiVEMCU5OCVEMCVCMiVEMCVCMCVEMCVCRCVEMCVCRSVEMCVCMiUyMCVEMCU5OCVEMCVCMiVEMCVCMCVEMCVCRCUyMCVEMCU5OCVEMCVCMiVEMCVCMCVEMCVCRCVEMCVCRSVEMCVCMiVEMCVCOCVEMSU4NyUyMiUyQyUyMCUyMnBob25lJTIyJTNBJTIwJTIyJTJCNzk5OTEyMzQ1NjclMjIlN0Q=
+
 ## На странице получателя
 
 - В самом верху — большая кнопка копирования номера + инструкция «Зайдите в банк → Переводы → По номеру телефона (СБП)»
@@ -30,15 +34,15 @@
 
 ## Развёртывание своей версии
 
-1. Нажмите Fork на этом репозитории
-2. Зайдите в **Settings → Pages**
+1. Нажмите **Fork** на этом репозитории
+2. Зайдите в **Settings → Pages** репозитория
 3. Выберите:
    - Source: **Deploy from a branch**
    - Branch: `main`
    - Folder: `/ (root)`
-4. Сохраните. Подождите 30–60 секунд.
+4. Нажмите Save. Подождите ~1 минуту.
 
-Ваш сайт будет по адресу `https://ВАШ_ЛОГИН.github.io/sbp-qr/`
+Готово! Сайт появится по адресу `https://<ваш-логин>.github.io/sbp-qr/`
 
 ## Технические детали
 
