@@ -19,6 +19,8 @@
     .phone-display { font-feature-settings: "tnum"; letter-spacing: -.5px; }
     .qr-container canvas { border-radius: 14px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
     .nice-shadow { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+    .modal { animation: modal-pop 0.2s ease forwards; }
+    @keyframes modal-pop { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
   </style>
 </head>
 <body class="bg-zinc-50 min-h-screen text-zinc-900">
@@ -155,11 +157,11 @@
 
       <!-- Banks section -->
       <div>
-        <div class="section-title mb-2.5 px-0.5">Выберите банк для автоперехода</div>
+        <div class="section-title mb-2.5 px-0.5">Выберите банк для быстрого перехода</div>
+        <div class="mb-2 px-1 text-xs text-amber-600 bg-amber-50 rounded-2xl py-2 px-3">Диплинки помогают, но не всегда точны (особенно на iOS у Сбера). Номер всегда копируется автоматически. Следуйте подсказке под кнопкой банка.</div>
         <div id="banks-grid" class="grid grid-cols-2 gap-2.5">
           <!-- JS populated -->
         </div>
-        <div class="text-[12px] text-zinc-500 mt-3 px-1">При нажатии номер копируется и приложение банка пытается открыться.</div>
       </div>
 
       <!-- Self QR -->
@@ -177,22 +179,115 @@
     </div>
   </div>
 
+  <!-- Bank Help Modal -->
+  <div id="bank-modal" onclick="closeBankModal()" class="hidden fixed inset-0 bg-black/60 z-[70] flex items-end md:items-center justify-center">
+    <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-md rounded-t-3xl md:rounded-3xl p-6 modal">
+      <div class="flex justify-between items-center mb-4">
+        <div id="modal-bank-name" class="font-semibold text-xl"></div>
+        <button onclick="closeBankModal()" class="text-zinc-400 text-2xl leading-none">&times;</button>
+      </div>
+      
+      <div id="modal-instruction" class="text-sm leading-relaxed bg-zinc-50 p-4 rounded-2xl text-zinc-700"></div>
+      
+      <div class="mt-4 flex gap-2">
+        <button id="modal-retry-btn" class="flex-1 py-3 bg-emerald-600 text-white font-semibold rounded-2xl active:bg-emerald-700">Повторить открытие приложения</button>
+        <button onclick="closeBankModal()" class="flex-1 py-3 bg-zinc-100 font-semibold rounded-2xl active:bg-zinc-200">Закрыть</button>
+      </div>
+      
+      <p class="text-[11px] text-center text-zinc-500 mt-3">Номер уже в буфере обмена. Если приложение открылось не на том экране — найдите раздел «Переводы по номеру» или «СБП».</p>
+    </div>
+  </div>
+
   <div id="toast-container" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] flex flex-col items-center gap-y-1.5 pointer-events-none"></div>
 
   <script>
     const BANKS = [
-      { id: 'tbank', name: 'Т-Банк', abbr: 'Т', bg: '#FFDD2D', fg: '#111827', scheme: 'tinkoffbank://', tip: 'Откройте «Платежи → Переводы по телефону».' },
-      { id: 'sber', name: 'СберБанк', abbr: 'С', bg: '#21A038', fg: '#fff', scheme: 'sberbankonline://', tip: '«Переводы» → «По номеру телефона (СБП)».' },
-      { id: 'alfa', name: 'Альфа-Банк', abbr: 'A', bg: '#EF3124', fg: '#fff', scheme: 'alfabank://', tip: 'Выберите СБП-перевод по номеру.' },
-      { id: 'vtb', name: 'ВТБ', abbr: 'ВТБ', bg: '#0033A0', fg: '#fff', scheme: 'vtb://', tip: 'Платежи → перевод по номеру телефона.' },
-      { id: 'gazprom', name: 'Газпромбанк', abbr: 'ГПБ', bg: '#1E3A5F', fg: '#fff', scheme: null, tip: 'Переводы по номеру телефона (СБП).' },
-      { id: 'raif', name: 'Райффайзен', abbr: 'Р', bg: '#EAB308', fg: '#111827', scheme: null, tip: 'Раздел переводов → СБП по номеру.' },
-      { id: 'ozon', name: 'Ozon Банк', abbr: 'OZ', bg: '#0055FF', fg: '#fff', scheme: null, tip: 'Перевод по СБП на номер телефона.' },
-      { id: 'other', name: 'Другой банк', abbr: '🏦', bg: '#475569', fg: '#fff', scheme: null, tip: 'Зайдите в приложение и выберите перевод по СБП.' }
+      { 
+        id: 'tbank', 
+        name: 'Т-Банк', 
+        abbr: 'Т', 
+        bg: '#FFDD2D', 
+        fg: '#111827', 
+        schemes: ['tinkoffbank://', 'tbank://bank/transfer'], 
+        instruction: 'Откройте «Платежи» → «Переводы по телефону». Вставьте номер из буфера.' 
+      },
+      { 
+        id: 'sber', 
+        name: 'СберБанк', 
+        abbr: 'С', 
+        bg: '#21A038', 
+        fg: '#fff', 
+        schemes: ['sberbankonline://', 'sberpay://', 'sbolpay://', 'onlineios-app://sbolpay/', 'startonline://sbolpay/'], 
+        instruction: 'В СберБанк Онлайн: Платежи → СБП (или «Переводы по номеру телефона»). Вставьте номер.' 
+      },
+      { 
+        id: 'alfa', 
+        name: 'Альфа-Банк', 
+        abbr: 'A', 
+        bg: '#EF3124', 
+        fg: '#fff', 
+        schemes: ['alfabank://', 'alfa://'], 
+        instruction: 'Перейдите в раздел переводов и выберите СБП / перевод по номеру телефона.' 
+      },
+      { 
+        id: 'vtb', 
+        name: 'ВТБ', 
+        abbr: 'ВТБ', 
+        bg: '#0033A0', 
+        fg: '#fff', 
+        schemes: ['vtb://', 'vtbonline://'], 
+        instruction: 'Платежи → «По номеру телефона или карты» → СБП.' 
+      },
+      { 
+        id: 'yandex', 
+        name: 'Яндекс Пэй', 
+        abbr: 'Я', 
+        bg: '#FF0000', 
+        fg: '#fff', 
+        schemes: ['yandexpay://', 'yandexpay://', 'yandex://pay'], 
+        instruction: 'В Яндекс Пэй: «Платежи» (внизу) → «Переводы по номеру телефона».' 
+      },
+      { 
+        id: 'gazprom', 
+        name: 'Газпромбанк', 
+        abbr: 'ГПБ', 
+        bg: '#1E3A5F', 
+        fg: '#fff', 
+        schemes: [], 
+        instruction: 'Переводы → «По номеру телефона» (СБП).' 
+      },
+      { 
+        id: 'raif', 
+        name: 'Райффайзен', 
+        abbr: 'Р', 
+        bg: '#EAB308', 
+        fg: '#111827', 
+        schemes: [], 
+        instruction: 'Раздел «Переводы» → СБП по номеру телефона.' 
+      },
+      { 
+        id: 'ozon', 
+        name: 'Ozon Банк', 
+        abbr: 'OZ', 
+        bg: '#0055FF', 
+        fg: '#fff', 
+        schemes: [], 
+        instruction: 'Переводы по СБП на номер телефона.' 
+      },
+      { 
+        id: 'other', 
+        name: 'Другой банк', 
+        abbr: '🏦', 
+        bg: '#475569', 
+        fg: '#fff', 
+        schemes: [], 
+        instruction: 'Зайдите в приложение и выберите перевод по номеру телефона через СБП.' 
+      }
     ];
 
     let currentData = null;
     let shareUrl = '';
+    let lastBank = null;
 
     function normalizePhone(raw) {
       let d = String(raw || '').replace(/\D/g, '');
@@ -315,7 +410,8 @@
           <div class="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center text-[13px] font-extrabold" style="background:${b.bg};color:${b.fg}">${b.abbr}</div>
           <div class="flex-1 min-w-0">
             <div class="font-semibold text-[15px] leading-none text-zinc-900">${b.name}</div>
-            <div class="text-[11px] text-emerald-600 font-medium mt-1">Открыть приложение</div>
+            <div class="text-[11px] text-emerald-600 font-medium mt-0.5">Открыть приложение</div>
+            <div class="text-[10px] text-zinc-500 mt-1 leading-tight">${b.instruction.split('.')[0]}.</div>
           </div>
         `;
         el.onclick = () => openBankApp(b, phone);
@@ -324,17 +420,57 @@
     }
 
     function openBankApp(bank, phone) {
-      copyToClipboard(phone, `Номер скопирован (${bank.name})`);
+      lastBank = bank;
+      copyToClipboard(phone, `Номер скопирован для ${bank.name}`);
 
-      if (bank.scheme) {
-        try {
-          window.location.href = bank.scheme;
-        } catch(e) {}
+      // Try multiple schemes (important for Sber variants on iOS)
+      if (bank.schemes && bank.schemes.length > 0) {
+        bank.schemes.forEach((scheme, index) => {
+          setTimeout(() => {
+            try {
+              let url = scheme;
+              if (!scheme.includes('?') && !scheme.endsWith('/')) {
+                url = scheme;
+              }
+              window.location.href = url;
+            } catch (e) {}
+          }, index * 280);
+        });
       }
 
+      // Show helpful modal with exact instructions
       setTimeout(() => {
-        showToast(bank.tip + ' Номер уже скопирован.', 4200);
-      }, 550);
+        showBankModal(bank);
+      }, 650);
+    }
+
+    function showBankModal(bank) {
+      const modal = document.getElementById('bank-modal');
+      document.getElementById('modal-bank-name').innerHTML = `<span style="color:${bank.bg}">●</span> ${bank.name}`;
+      document.getElementById('modal-instruction').innerHTML = bank.instruction.replace(/\n/g, '<br>');
+      
+      const retryBtn = document.getElementById('modal-retry-btn');
+      retryBtn.onclick = () => {
+        if (lastBank && currentData) {
+          if (lastBank.schemes && lastBank.schemes.length) {
+            lastBank.schemes.forEach((s, i) => {
+              setTimeout(() => { try { window.location.href = s; } catch(e){} }, i*200);
+            });
+          }
+        }
+        closeBankModal();
+      };
+
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeBankModal() {
+      const modal = document.getElementById('bank-modal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
     }
 
     function copyPhoneFromPay() {
