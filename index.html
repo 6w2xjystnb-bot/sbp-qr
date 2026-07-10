@@ -11,7 +11,6 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
     body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
     .title-font { font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif; font-weight: 600; }
-    .pay-card { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05); }
     .bank-btn { transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1); }
     .bank-btn:active { transform: scale(0.965); }
     .section-title { font-size: 0.8125rem; letter-spacing: -.02em; font-weight: 600; color: #374151; }
@@ -398,15 +397,11 @@
         // ready for input
       }
 
-      // Enter key support
       document.addEventListener('keydown', e => {
         if (e.key === 'Enter' && document.getElementById('result-panel').classList.contains('hidden') && !document.getElementById('creator-view').classList.contains('hidden')) {
           createPage();
         }
       });
-
-      // Optional: prefill nice data for faster testing (commented)
-      // fillExample();
     }
 
     window.onload = init;

@@ -38,7 +38,7 @@ https://6w2xjystnb-bot.github.io/sbp-qr/#d=JTdCJTIybmFtZSUyMiUzQSUyMCUyMiVEMCU5O
 2. Зайдите в **Settings → Pages** репозитория
 3. Выберите:
    - Source: **Deploy from a branch**
-   - Branch: `main`
+   - Branch: `main` или `gh-pages`
    - Folder: `/ (root)`
 4. Нажмите Save. Подождите ~1 минуту.
 
